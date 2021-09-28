@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Issues</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div th:switch="${liste}">
+            <h2 th:case="null">No issues yet!</h2>
+            <div th:case="*">
+                <h2>Issues</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nom du gymnase</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
+                        <th>Surface</th>
+                        <th>Seances</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="gym : liste">
+                        <td th:text="${gym.nomGymnase}"></td>
+                        <td th:text="${gym.adresse}"></td>
+                        <td th:text="${gym.ville}"></td>
+                        <td th:text="${gym.surface}"></td>
+                        <td th:text="${gym.seances}"></td>
+                        <td><a th:href="@{/edit/{id}(id=${issue.id})}">Edit</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${issue.id})}">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
