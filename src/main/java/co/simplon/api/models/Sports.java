@@ -2,37 +2,19 @@ package co.simplon.api.models;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Sports {
+	@Field(name = "Jouer")
 	private List<String> jouer;
+	@Field(name = "Arbitrer")
 	private List<String> arbitrer;
+	@Field(name = "Entrainer")
 	private List<String> entrainer;
-
-	public Sports() {
-		super();
-	}
-
-	public List<String> getJouer() {
-		return jouer;
-	}
-
-	public void setJouer(List<String> jouer) {
-		this.jouer = jouer;
-	}
-
-	public List<String> getArbitrer() {
-		return arbitrer;
-	}
-
-	public void setArbitrer(List<String> arbitrer) {
-		this.arbitrer = arbitrer;
-	}
-
-	public List<String> getEntrainer() {
-		return entrainer;
-	}
-
-	public void setEntrainer(List<String> entrainer) {
-		this.entrainer = entrainer;
-	}
 
 }
