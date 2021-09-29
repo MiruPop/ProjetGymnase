@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Gymnases</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css"
+	integrity="sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container col-md-5">
+		<div class="card">
+			<div class="card-body">
+				<form action="#" th:action="@{/gymnase/modifier/{id}(id=${gymnase.id})}" th:object="${gymnase}"
+					method="post">
+					<h3>Modifier la salle:</h3>
+					<fieldset>
+						<div class="mb-3">
+							<label for="nomGymnase">Nom</label>
+							<input type="text"
+								class="form-control form-control-sm" th:field="*{nomGymnase}" id="nom">
+
+							<label for="adresse">Adresse</label>
+							<input type="text"
+								class="form-control form-control-sm" th:field="*{adresse}"
+								id="adresse">
+							<label for="ville">Ville</label>
+							<input
+								type="text" class="form-control form-control-sm"
+								th:field="*{ville}" id="ville">
+							<label for="surface">Surface</label>
+							<input type="text" class="form-control form-control-sm"
+								th:field="*{surface}" id="surface">
+						</div>
+					</fieldset>
+					<input type="submit" class="btn btn-primary" value="Mettre à jour">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
