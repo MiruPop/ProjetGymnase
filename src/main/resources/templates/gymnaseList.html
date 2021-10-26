@@ -16,7 +16,7 @@
 				class="btn btn-lg btn-primary" type="button">Ajouter une
 				salle</button></a>
 	</div>
-<!-- 	<div>
+	<!-- 	<div>
 		<label for="site-search">Chercher une salle:</label>
 		<input type="search" id="site-search" name="q" aria-label="Search through site content">
 		<button>Recherche</button>
@@ -30,26 +30,45 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
+				<th>Modifier / Effacer</th>
 				<th>Nom</th>
 				<th>Adresse</th>
 				<th>Surface</th>
-				<th>Modifier</th>
-				<th>Effacer</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody th:each="gymnase : ${listeGymnases}">
 			<tr class="table-secondary">
-				<td th:text="${gymnase.nomGymnase}"></td>
-				<td th:text="${#strings.listJoin({gymnase.adresse, gymnase.ville}, ', ')}"></td>
-				<td th:text="${gymnase.surface}"></td>
 				<td><a th:href="@{/gymnase/update/{id}(id = ${gymnase.id})}"><span
-						class="iconify" data-icon="la:pen-fancy" data-inline="false"></span></a></td>
-				<td><a th:href="@{/gymnase/delete/{id}(id = ${gymnase.id})}"><span
+						class="iconify" data-icon="la:pen-fancy" data-inline="false"></span></a>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a th:href="@{/gymnase/delete/{id}(id = ${gymnase.id})}"><span
 						class="iconify" data-icon="entypo:trash" data-inline="false"></span></a></td>
+				<td th:text="${gymnase.nomGymnase}"></td>
+				<td
+					th:text="${#strings.listJoin({gymnase.adresse, gymnase.ville}, ', ')}"></td>
+				<td th:text="${gymnase.surface}+' m&sup2'"></td>
+				<td>
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Séances</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<p class="dropdown-item"
+								th:each="seance:${gymnase.seances}"
+								th:text="${seance.Libelle}+', '+${seance.Jour}+', '+${seance.Horaire}+'h'+', '+${seance.Duree}+' min'"></p>
+						</div>
+					</div>
+
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
 	<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

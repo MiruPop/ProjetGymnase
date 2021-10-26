@@ -3,10 +3,10 @@ package co.simplon.api.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.simplon.api.exceptions.ItemNotFountException;
 import co.simplon.api.models.Gymnase;
 import co.simplon.api.repository.GymnaseRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,8 @@ public class GymnaseServiceImpl implements GymnaseService {
 	@Override
 	public Gymnase getGymnaseParId(String id) {
 		Optional<Gymnase> optionalGymnase = gymnaseRepository.findById(id);
-		return optionalGymnase.orElseThrow();
+
+		return optionalGymnase.orElseThrow(() -> new ItemNotFountException("Pas d'élément avec l'id "+id));
 	}
 
 
@@ -52,6 +53,11 @@ public class GymnaseServiceImpl implements GymnaseService {
 		return false;
 	}
 	
+	//vers. Rest
+	public Gymnase addGymnase(Gymnase gymnase) {
+		return gymnaseRepository.save(gymnase);
+	}
+	
 	public void modifierGymnase(Gymnase gymnase) {
 		Gymnase gym = getGymnaseParId(gymnase.getId());
 
@@ -61,6 +67,11 @@ public class GymnaseServiceImpl implements GymnaseService {
 		
 		gymnaseRepository.save(gymnase);
 	}
+	
+	//méthode à vérifier (Rest):
+	 public Gymnase updateGymnase(Gymnase gymnase) {
+	 	return gymnaseRepository.save(gymnase);
+	 }
 	
 	public boolean effacerGymnase(String id) {
 		
@@ -72,6 +83,11 @@ public class GymnaseServiceImpl implements GymnaseService {
 			log.debug("La donnée n'a pas pu être effacée");
 			return false;
 		}
+	}
+
+	@Override
+	public List<Gymnase> getGymnasesParTaille(int taille) {
+		return gymnaseRepository.findAllBySurfaceGreaterThanEqual(taille);
 	}
 
 }

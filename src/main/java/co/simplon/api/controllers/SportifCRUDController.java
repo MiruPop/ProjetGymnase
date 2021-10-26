@@ -14,7 +14,7 @@ import co.simplon.api.services.GymnaseServiceImpl;
 import co.simplon.api.services.SportifServiceImpl;
 
 @RestController
-public class GenController {
+public class SportifCRUDController {
 	
 	@Autowired
 	private GymnaseServiceImpl gymnaseService;
@@ -22,10 +22,12 @@ public class GenController {
 	private SportifServiceImpl sportifService;
 
 //	http://localhost:9000/sportif/liste
-//	@GetMapping(path = "/sportif/liste")
-//	public List<Sportif> getAllSportifs() {
-//		return sportifService.findAll();
-//	}
+	@GetMapping(path = "/sportif/liste")
+	public List<Sportif> getAllSportifs() {
+		return sportifService.findAll();
+	}
+	
+//
 	
 //	http://localhost:9000/nom?nom=KERVADEC&prenom=Yann
 	@GetMapping(path = "/nom")
