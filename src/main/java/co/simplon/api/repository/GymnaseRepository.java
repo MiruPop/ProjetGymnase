@@ -11,8 +11,9 @@ import co.simplon.api.models.Gymnase;
 @Repository
 public interface GymnaseRepository extends MongoRepository<Gymnase, String> {
 
-//	@Query("{Ville:'?0'}")
 	List<Gymnase> findByVille(String ville);
 	List<Gymnase> findBySeances_IdSportifEntraineur(int IdSportifEntraineur);
 	Optional<Gymnase> findById(String id);
+	
+	List<Gymnase> findAllBySurfaceGreaterThanEqual(int taille);
 }

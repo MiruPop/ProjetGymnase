@@ -13,7 +13,7 @@
 		<div class="card">
 			<div class="card-body">
 				<form action="#" th:action="@{/gymnase/modifier/{id}(id=${gymnase.id})}" th:object="${gymnase}"
-					method="post">
+					method="put">
 					<h3>Modifier la salle:</h3>
 					<fieldset>
 						<div class="mb-3">
