@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class Gymnase {
     public static final String SEQUENCE_NAME = "Id_gymnase";
 	
 	@Id
+	@Field (name = "_id", targetType = FieldType.STRING)
 	private String id;
 	@Field (name = "IdGymnase")
 	private int idGymnase;

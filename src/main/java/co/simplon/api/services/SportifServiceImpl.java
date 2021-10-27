@@ -25,4 +25,9 @@ public class SportifServiceImpl implements SportifService {
 		return this.sportifRepository.findAll();
 	}
 
+	@Override
+	public Sportif addSportif(Sportif sportif) {
+		return this.sportifRepository.save(sportif);
+	}
+
 }

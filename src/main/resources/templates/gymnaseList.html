@@ -39,10 +39,10 @@
 		</thead>
 		<tbody th:each="gymnase : ${listeGymnases}">
 			<tr class="table-secondary">
-				<td><a th:href="@{/gymnase/update/{id}(id = ${gymnase.id})}"><span
+				<td><a th:href="@{/gymnase/editer/{id}(id = ${gymnase.id})}"><span
 						class="iconify" data-icon="la:pen-fancy" data-inline="false"></span></a>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<a th:href="@{/gymnase/delete/{id}(id = ${gymnase.id})}"><span
+				<a th:href="@{/gymnase/effacer/{id}(id = ${gymnase.id})}"><span
 						class="iconify" data-icon="entypo:trash" data-inline="false"></span></a></td>
 				<td th:text="${gymnase.nomGymnase}"></td>
 				<td

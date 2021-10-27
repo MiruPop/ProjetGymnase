@@ -58,17 +58,17 @@ public class GymnaseServiceImpl implements GymnaseService {
 		return gymnaseRepository.save(gymnase);
 	}
 	
+	//vers 1
 	public void modifierGymnase(Gymnase gymnase) {
 		Gymnase gym = getGymnaseParId(gymnase.getId());
 
 		gym.setIdGymnase(gymnase.getIdGymnase());
 		gym.setNomGymnase(gymnase.getNomGymnase());
 		gym.setAdresse(gymnase.getAdresse());
-		
 		gymnaseRepository.save(gymnase);
 	}
 	
-	//méthode à vérifier (Rest):
+	//méthode Rest:
 	 public Gymnase updateGymnase(Gymnase gymnase) {
 	 	return gymnaseRepository.save(gymnase);
 	 }
@@ -84,6 +84,11 @@ public class GymnaseServiceImpl implements GymnaseService {
 			return false;
 		}
 	}
+	
+//	// Rest
+//	public void deleteGymnase(Gymnase gymnase) {
+//		gymnaseRepository.delete(gymnase);
+//	}
 
 	@Override
 	public List<Gymnase> getGymnasesParTaille(int taille) {

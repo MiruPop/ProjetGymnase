@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,10 +43,12 @@ public class SportifCRUDController {
 		return gymnaseService.getSeancesParEntraineur(idSportifEntraineur);
 	}
 	
-//	http://localhost:9000/gymnase/STAINS
-	@GetMapping(path = "/gymnase/{ville}")
-	public List<Gymnase> getGymnasesByCity(@PathVariable("ville") String ville) {
-		return gymnaseService.getGymnasesParVille(ville);
+//	http://localhost:9000/sportif/add
+	@PostMapping(path = "/sportif/add")
+	public Sportif addNewSportif (@RequestBody Sportif sportif) {
+		return sportifService.addSportif(sportif);
 	}
+	
+	
 
 }

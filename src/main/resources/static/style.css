@@ -7,3 +7,11 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+.conteneur {
+	position:fixed;
+	top:100%;
+	bottom:0;
+	height: 200px;
+	margin:-200px auto 0 auto;
+}

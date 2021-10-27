@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.simplon.api.models.Gymnase;
 import co.simplon.api.services.GymnaseServiceImpl;
 
+//@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/gymnase")
 public class GymnaseCRUDControl_angular {
@@ -55,5 +56,11 @@ public class GymnaseCRUDControl_angular {
 			gymnaseService.effacerGymnase(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
+		
+//		@DeleteMapping("/delete")
+//		public ResponseEntity<?> deleteGymnase(@RequestBody Gymnase gym) {
+//			gymnaseService.deleteGymnase(gym);
+//			return new ResponseEntity<>(HttpStatus.OK);
+//		}
 
 	}
