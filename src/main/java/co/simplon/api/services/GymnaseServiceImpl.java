@@ -17,6 +17,67 @@ public class GymnaseServiceImpl implements GymnaseService {
 
 	@Autowired
 	GymnaseRepository gymnaseRepository;
+
+/*********** SELECT PAR ID ***********/
+	
+	@Override
+	public Gymnase getGymnaseParId(String id) {
+		Optional<Gymnase> optionalGymnase = gymnaseRepository.findById(id);
+
+		return optionalGymnase.orElseThrow(() -> new ItemNotFountException("Pas d'élément avec l'id " + id));
+	}
+
+/*********** READ ALL ***********/
+	
+	public List<Gymnase> listeGyms() {
+		return this.gymnaseRepository.findAll();
+	}
+
+/*********** CREATE ***********/
+	
+//vers Spring/Thymeleaf
+	public boolean ajouterGymnase(Gymnase gymnase) {
+		try {
+			gymnaseRepository.save(gymnase);
+			return true;
+		} catch (Exception e) {
+			log.debug("L'insertion n'a pas pu être réalisée");
+		}
+		return false;
+	}
+
+//vers. Rest
+	public Gymnase addGymnase(Gymnase gymnase) {
+		return gymnaseRepository.save(gymnase);
+	}
+
+/*********** UPDATE ***********/
+
+	public Gymnase updateGymnase(Gymnase gymnase) {
+		return gymnaseRepository.save(gymnase);
+	}
+
+/*********** DELETE ***********/
+//vers Spring/Thymeleaf
+	public boolean effacerGymnase(String id) {
+
+		try {
+			gymnaseRepository.deleteById(id);
+			return true;
+
+		} catch (Exception e) {
+			log.debug("La donnée n'a pas pu être effacée");
+			return false;
+		}
+	}
+
+//vers. Rest
+	public void deleteGymnase(Gymnase gymnase) {
+		gymnaseRepository.delete(gymnase);
+	}
+
+
+/*********** FILTRES ***********/
 	
 	@Override
 	public List<Gymnase> getGymnasesParVille(String ville) {
@@ -30,65 +91,6 @@ public class GymnaseServiceImpl implements GymnaseService {
 
 		return this.gymnaseRepository.findBySeances_IdSportifEntraineur(IdSportifEntraineur);
 	}
-
-	@Override
-	public Gymnase getGymnaseParId(String id) {
-		Optional<Gymnase> optionalGymnase = gymnaseRepository.findById(id);
-
-		return optionalGymnase.orElseThrow(() -> new ItemNotFountException("Pas d'élément avec l'id "+id));
-	}
-
-
-	public List<Gymnase> listeGyms() {
-		return this.gymnaseRepository.findAll();
-	}
-	
-	public boolean ajouterGymnase(Gymnase gymnase) {
-		try {
-			gymnaseRepository.save(gymnase);
-			return true;
-		} catch (Exception e) {
-			log.debug("L'insertion n'a pas pu être réalisée");
-		}
-		return false;
-	}
-	
-	//vers. Rest
-	public Gymnase addGymnase(Gymnase gymnase) {
-		return gymnaseRepository.save(gymnase);
-	}
-	
-	//vers 1
-	public void modifierGymnase(Gymnase gymnase) {
-		Gymnase gym = getGymnaseParId(gymnase.getId());
-
-		gym.setIdGymnase(gymnase.getIdGymnase());
-		gym.setNomGymnase(gymnase.getNomGymnase());
-		gym.setAdresse(gymnase.getAdresse());
-		gymnaseRepository.save(gymnase);
-	}
-	
-	//méthode Rest:
-	 public Gymnase updateGymnase(Gymnase gymnase) {
-	 	return gymnaseRepository.save(gymnase);
-	 }
-	
-	public boolean effacerGymnase(String id) {
-		
-		try {
-			gymnaseRepository.deleteById(id);
-			return true;
-			
-		} catch (Exception e) {
-			log.debug("La donnée n'a pas pu être effacée");
-			return false;
-		}
-	}
-	
-//	// Rest
-//	public void deleteGymnase(Gymnase gymnase) {
-//		gymnaseRepository.delete(gymnase);
-//	}
 
 	@Override
 	public List<Gymnase> getGymnasesParTaille(int taille) {

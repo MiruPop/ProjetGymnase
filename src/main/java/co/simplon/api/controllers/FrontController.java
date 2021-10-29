@@ -11,5 +11,17 @@ public class FrontController {
 	public String getpageAccueil() {
 		return "index";
 	}
+	
+//	http://localhost:9000/login
+	@RequestMapping(value = "/login")
+	public String getpageLogin() {
+		return "login";
+	}
+	
+//	http://localhost:9000/sportif/all
+	@RequestMapping(value = "/sportifs/all")
+	public String getpageSportifs() {
+		return "sportifList";
+	}
 
 }
