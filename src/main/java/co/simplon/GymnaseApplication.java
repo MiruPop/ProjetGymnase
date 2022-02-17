@@ -20,6 +20,11 @@ public class GymnaseApplication {
 		SpringApplication.run(GymnaseApplication.class, args);
 	}
 	
+	/*
+	 * Ce Bean permet à tous les endpoints de l'application de communiquer
+	 * de manière croisée avec une application tournant sur un autre domaine,
+	 * dans le cas présent avec le domaine de l'interface Angular
+	 */
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

@@ -64,7 +64,7 @@ public class GymnaseCRUDController {
             g.setId(objectId);
             return "gymnaseUpdateForm";
         }
-        gymnaseService.modifierGymnase(g);
+        gymnaseService.updateGymnase(g);
         
         return "redirect:/gymnase/tous";
     }
