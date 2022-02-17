@@ -2,6 +2,7 @@ package co.simplon.api.controllers;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,8 @@ public class GymnaseCRUDControl_angular {
 //		http://localhost:9000/gymnase/find/566eec69662b388eba464299
 		@GetMapping("/find/{id}")
 		public ResponseEntity<Gymnase> trouveUnGymnase(@PathVariable("id") String id) {
-			Gymnase existingGymnase = gymnaseService.getGymnaseParId(id);
+			ObjectId objectId = new ObjectId(id);
+			Gymnase existingGymnase = gymnaseService.getGymnaseParId(objectId);
 			return new ResponseEntity<>(existingGymnase, HttpStatus.OK);
 		}
 		
@@ -53,7 +55,8 @@ public class GymnaseCRUDControl_angular {
 		
 		@DeleteMapping("/delete/{id}")
 		public ResponseEntity<?> deleteGymnase(@PathVariable("id") String id) {
-			gymnaseService.effacerGymnase(id);
+			ObjectId objectId = new ObjectId(id);
+			gymnaseService.effacerGymnase(objectId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		

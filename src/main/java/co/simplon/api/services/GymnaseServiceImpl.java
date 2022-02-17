@@ -3,6 +3,7 @@ package co.simplon.api.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class GymnaseServiceImpl implements GymnaseService {
 	}
 
 	@Override
-	public Gymnase getGymnaseParId(String id) {
+	public Gymnase getGymnaseParId(ObjectId id) {
 		Optional<Gymnase> optionalGymnase = gymnaseRepository.findById(id);
 
 		return optionalGymnase.orElseThrow(() -> new ItemNotFountException("Pas d'élément avec l'id "+id));
@@ -73,7 +74,7 @@ public class GymnaseServiceImpl implements GymnaseService {
 	 	return gymnaseRepository.save(gymnase);
 	 }
 	
-	public boolean effacerGymnase(String id) {
+	public boolean effacerGymnase(ObjectId id) {
 		
 		try {
 			gymnaseRepository.deleteById(id);

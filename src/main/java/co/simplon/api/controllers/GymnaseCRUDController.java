@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,16 +51,17 @@ public class GymnaseCRUDController {
 //	UPDATE
     @GetMapping("/editer/{id}")
     public String showUpdateForm(@PathVariable("id") String id, Model model) {
-        Gymnase gym = gymnaseService.getGymnaseParId(id);
+		ObjectId objectId = new ObjectId(id);
+        Gymnase gym = gymnaseService.getGymnaseParId(objectId);
         
         model.addAttribute("gymnase", gym);
         return "gymnaseUpdateForm";
     }
     @GetMapping("/modifier/{id}")
     public String modifierPersonne(@PathVariable("id") String id, @Valid Gymnase g, BindingResult result, Model model) {
-    	
+		ObjectId objectId = new ObjectId(id);
         if (result.hasErrors()) {
-            g.setId(id);
+            g.setId(objectId);
             return "gymnaseUpdateForm";
         }
         gymnaseService.modifierGymnase(g);
@@ -70,8 +72,8 @@ public class GymnaseCRUDController {
 //	DELETE
 	@GetMapping("/effacer/{id}")
 	public String deleteGymnase(@PathVariable("id") String id) {
-		
-		gymnaseService.effacerGymnase(id);
+		ObjectId objectId = new ObjectId(id);
+		gymnaseService.effacerGymnase(objectId);
 		System.out.println("delete ok");
 		
 	    return "redirect:/gymnase/tous";
